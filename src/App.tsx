@@ -2,8 +2,9 @@ import { useMemo, useState } from 'react'
 import CharacterComponents from './components/character'
 import CenterDiv from './components/character/common/centerDiv'
 import Form from './components/form'
+import Timer from './components/timer'
 
-type ShowComponentType = 'character' | 'form'
+type ShowComponentType = 'character' | 'form' | 'timer'
 
 const App = () => {
   const [showComponent, setShowComponent] = useState<ShowComponentType>('character')
@@ -14,6 +15,8 @@ const App = () => {
         return <CharacterComponents />
       case 'form':
         return <Form />
+      case 'timer':
+        return <Timer />
       default:
         return null
     }
@@ -29,6 +32,9 @@ const App = () => {
             </span>
             <span className="cursor-pointer" onClick={() => setShowComponent('form')}>
               Form
+            </span>
+            <span className="cursor-pointer" onClick={() => setShowComponent('timer')}>
+              Timer
             </span>
           </div>
           {renderComponent}
