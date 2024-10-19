@@ -1,11 +1,40 @@
+import { useMemo, useState } from 'react'
 import CharacterComponents from './components/character'
 import CenterDiv from './components/character/common/centerDiv'
+import Form from './components/form'
+
+type ShowComponentType = 'character' | 'form'
 
 const App = () => {
+  const [showComponent, setShowComponent] = useState<ShowComponentType>('character')
+
+  const renderComponent = useMemo(() => {
+    switch (showComponent) {
+      case 'character':
+        return <CharacterComponents />
+      case 'form':
+        return <Form />
+      default:
+        return null
+    }
+  }, [showComponent])
+
   return (
-    <CenterDiv>
-      <CharacterComponents />
-    </CenterDiv>
+    <div className="h-screen">
+      <CenterDiv>
+        <div className="flex flex-col gap-4">
+          <div className="flex justify-center items-center gap-2">
+            <span className="cursor-pointer" onClick={() => setShowComponent('character')}>
+              Character
+            </span>
+            <span className="cursor-pointer" onClick={() => setShowComponent('form')}>
+              Form
+            </span>
+          </div>
+          {renderComponent}
+        </div>
+      </CenterDiv>
+    </div>
   )
 }
 

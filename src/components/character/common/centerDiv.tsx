@@ -5,7 +5,7 @@ export type CenterDivType = {
 }
 
 const CenterDiv: FC<CenterDivType> = ({ children }) => {
-  return <div className="flex justify-center items-center h-screen">{children}</div>
+  return <div className="flex justify-center items-center">{children}</div>
 }
 
 export default CenterDiv
