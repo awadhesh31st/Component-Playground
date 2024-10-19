@@ -3,8 +3,10 @@ import CharacterComponents from './components/character'
 import CenterDiv from './components/character/common/centerDiv'
 import Form from './components/form'
 import Timer from './components/timer'
+import { ErrorBoundary } from './components/common/error-boundary'
+import { FallBackError } from './components/fallBackError'
 
-type ShowComponentType = 'character' | 'form' | 'timer'
+type ShowComponentType = 'character' | 'form' | 'timer' | 'error-boundery'
 
 const App = () => {
   const [showComponent, setShowComponent] = useState<ShowComponentType>('character')
@@ -17,6 +19,9 @@ const App = () => {
         return <Form />
       case 'timer':
         return <Timer />
+      case 'error-boundery':
+        return <FallBackError />
+
       default:
         return null
     }
@@ -36,8 +41,11 @@ const App = () => {
             <span className="cursor-pointer" onClick={() => setShowComponent('timer')}>
               Timer
             </span>
+            <span className="cursor-pointer" onClick={() => setShowComponent('error-boundery')}>
+              Error check
+            </span>
           </div>
-          {renderComponent}
+          <ErrorBoundary>{renderComponent}</ErrorBoundary>
         </div>
       </CenterDiv>
     </div>
