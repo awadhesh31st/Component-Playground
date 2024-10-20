@@ -6,8 +6,15 @@ import Timer from './components/timer'
 import { ErrorBoundary } from './components/common/error-boundary'
 import { FallBackError } from './components/fallBackError'
 import { FetchData } from './components/customHooks'
+import FAQ from './components/compoundUI'
 
-type ShowComponentType = 'character' | 'form' | 'timer' | 'error-boundery' | 'fetch-hook'
+type ShowComponentType =
+  | 'character'
+  | 'form'
+  | 'timer'
+  | 'error-boundery'
+  | 'fetch-hook'
+  | 'compound-component'
 
 const App = () => {
   const [showComponent, setShowComponent] = useState<ShowComponentType>('form')
@@ -24,6 +31,8 @@ const App = () => {
         return <FallBackError />
       case 'fetch-hook':
         return <FetchData />
+      case 'compound-component':
+        return <FAQ />
       default:
         return null
     }
@@ -63,6 +72,12 @@ const App = () => {
               onClick={() => setShowComponent('fetch-hook')}
             >
               Fetch hook
+            </span>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('compound-component')}
+            >
+              Compound Component
             </span>
           </div>
           <ErrorBoundary>{renderComponent}</ErrorBoundary>
