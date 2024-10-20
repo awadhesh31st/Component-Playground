@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 
-type UseFetchType = {
+export type UseFetchType = {
   url: string
 }
 
-type UseFetchRetrunType = {
+export type UseFetchRetrunType = {
   isLaoding: boolean
   isError: boolean
   data: any | null
 }
 
-const useFetch = ({ url }: UseFetchType): UseFetchRetrunType => {
+export const useFetch = ({ url }: UseFetchType): UseFetchRetrunType => {
   const [isLaoding, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
   const [data, setData] = useState<any | null>(null)
