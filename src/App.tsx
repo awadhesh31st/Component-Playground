@@ -5,11 +5,12 @@ import Form from './components/form'
 import Timer from './components/timer'
 import { ErrorBoundary } from './components/common/error-boundary'
 import { FallBackError } from './components/fallBackError'
+import { FetchData } from './components/customHooks'
 
-type ShowComponentType = 'character' | 'form' | 'timer' | 'error-boundery'
+type ShowComponentType = 'character' | 'form' | 'timer' | 'error-boundery' | 'fetch-hook'
 
 const App = () => {
-  const [showComponent, setShowComponent] = useState<ShowComponentType>('character')
+  const [showComponent, setShowComponent] = useState<ShowComponentType>('form')
 
   const renderComponent = useMemo(() => {
     switch (showComponent) {
@@ -21,7 +22,8 @@ const App = () => {
         return <Timer />
       case 'error-boundery':
         return <FallBackError />
-
+      case 'fetch-hook':
+        return <FetchData />
       default:
         return null
     }
@@ -32,17 +34,35 @@ const App = () => {
       <CenterDiv>
         <div className="flex flex-col gap-4">
           <div className="flex justify-center items-center gap-2">
-            <span className="cursor-pointer" onClick={() => setShowComponent('character')}>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('character')}
+            >
               Character
             </span>
-            <span className="cursor-pointer" onClick={() => setShowComponent('form')}>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('form')}
+            >
               Form
             </span>
-            <span className="cursor-pointer" onClick={() => setShowComponent('timer')}>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('timer')}
+            >
               Timer
             </span>
-            <span className="cursor-pointer" onClick={() => setShowComponent('error-boundery')}>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('error-boundery')}
+            >
               Error check
+            </span>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('fetch-hook')}
+            >
+              Fetch hook
             </span>
           </div>
           <ErrorBoundary>{renderComponent}</ErrorBoundary>

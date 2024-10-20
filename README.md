@@ -24,3 +24,4 @@ To get started with the Component Playground, follow these steps:
    ```bash
    https://github.com/awadhesh31st/Component-Playground.git
    cd Component-Playground
+   ```
