@@ -7,6 +7,7 @@ import { ErrorBoundary } from './components/common/error-boundary'
 import { FallBackError } from './components/fallBackError'
 import { FetchData } from './components/customHooks'
 import FAQ from './components/compoundUI'
+import PokemonList from './components/product'
 
 type ShowComponentType =
   | 'character'
@@ -15,6 +16,7 @@ type ShowComponentType =
   | 'error-boundery'
   | 'fetch-hook'
   | 'compound-component'
+  | 'PokemonList'
 
 const App = () => {
   const [showComponent, setShowComponent] = useState<ShowComponentType>('form')
@@ -33,6 +35,8 @@ const App = () => {
         return <FetchData />
       case 'compound-component':
         return <FAQ />
+      case 'PokemonList':
+        return <PokemonList />
       default:
         return null
     }
@@ -78,6 +82,12 @@ const App = () => {
               onClick={() => setShowComponent('compound-component')}
             >
               Compound Component
+            </span>
+            <span
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white"
+              onClick={() => setShowComponent('PokemonList')}
+            >
+              PokemonList
             </span>
           </div>
           <ErrorBoundary>{renderComponent}</ErrorBoundary>
